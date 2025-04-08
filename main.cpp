@@ -14,11 +14,18 @@ void B()
 }
 
 
-void Swap(int* A, int* B)
+void Swap(int* PA, int* PB)
 {
-	int Temp = *A;
-	*A = *B;
-	*B = Temp;
+	int Temp = *PA;
+	*PA = *PB;
+	*PB = Temp;
+}
+
+void Swap2(int* PA, int* PB)
+{
+	int *Temp = PA;
+	PA = PB;
+	PB = Temp;
 }
 
 
@@ -27,7 +34,6 @@ int main()
 {
 	int A = 10;
 	int B = 20;
-	
 	Swap(&A, &B);
 
 	cout << A << endl;
