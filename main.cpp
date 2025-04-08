@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -23,63 +24,57 @@ void Swap(int* PA, int* PB)
 
 void Swap2(int* PA, int* PB)
 {
-	int *Temp = PA;
+	int* Temp = PA;
 	PA = PB;
 	PB = Temp;
 }
 
 
-void Test(int* A, int Size)
+int* Resize(int* Original, int OriginalSize, int NewSize)
 {
-	for (int i = 0; i < Size; ++i)
+	int* NewDynamicArray = new int[NewSize];
+	for (int i = 0; i < OriginalSize; ++i)
 	{
-		cout << *(A+i) << endl;
-		cout << A[i] << endl;
+		NewDynamicArray[i] = Original[i];
 	}
+
+	delete[] Original;
+	Original = nullptr;
+
+	Original = NewDynamicArray;
+	NewDynamicArray = nullptr;
+
+	return Original;
 }
 
-int* LoadTexture(int Value)
-{
-	return new int[Value];
-}
+
 
 int main()
 {
-	
-	for (int i = 0; i < 1000; ++i)
+	int A;
+	inrt
+
+	int* DynamicArray = new int[10000];
+
+	for (int i = 0; i < 10; ++i)
 	{
-		delete[] LoadTexture(100000000);
+		DynamicArray[i] = (i + 1) * 3;
 	}
 
-	int Size = 10;
+	//추가 삭제 비용 적게 드는거
+	//접근 빠르다. 접근에 상수 시간(vector)
+	DynamicArray = Resize(DynamicArray, 10000, 10001);
 
-	//Heap 지워지지 내맘대로 할수 있다.
-	//생성, 삭제 조정 할수 있다.
-	int* PA = new int[Size];
-	int* PA2 = PA;
-	for (int i = 0; i < Size; ++i)
+	for (int i = 10; i < 20; ++i)
 	{
-		PA2[i] = i;
-	}
-	//*(PA+0) 
-	delete[] PA2;
-	PA2 = nullptr;
-	  
-
-	//dangling pointer
-	//if (PA == nullptr)
-	if (PA)
-	{
-		cout << PA[1] << endl;
+		DynamicArray[i] = (i - 9) * 4;
 	}
 
-	int* PB = new int;
-	delete PB;
 
-
-	//cout << A[2] << endl;
-	//cout << *(A + 2 ) << endl;
-
+	for (int i = 0; i < 20; ++i)
+	{
+		cout << DynamicArray[i] << endl;
+	}
 
 	return 0;
 }
