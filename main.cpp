@@ -1,5 +1,6 @@
 #include <iostream>
 #include <windows.h>
+#include <conio.h>
 
 using namespace std;
 
@@ -32,11 +33,50 @@ int main()
     PlayerData->Y = 5;
     PlayerData->Shape = "P";
 
-    GotoXY(PlayerData->X, PlayerData->Y);
+    int* A = new int;
+    *A = 1;
 
-    cout << PlayerData->Shape << endl;
+    bool IsRunning = true;
+    while (IsRunning)
+    {
+        //Input();
+        if (_kbhit())
+        {
+            int Key = _getch();
+
+            //And, Or, Not
+            //&&, ||, !
+            //Process();
+            if (Key == 0x48 || toupper(Key) == 'W')
+            {
+                PlayerData->Y--;
+            }
+            else if (Key == 0x4B || toupper(Key) == 'A')
+            {
+                PlayerData->X--;
+            }
+            else if (Key == 0x4D || toupper(Key) == 'D')
+            {
+                PlayerData->X++;
+            }
+            else if (Key == 0x50 || toupper(Key) == 'S')
+            {
+                PlayerData->Y++;
+            }
+            else if (Key == 27)
+            {
+                IsRunning = false;
+                //break;
+            }
+        }     
+
+        //system("cls");
+        GotoXY(PlayerData->X, PlayerData->Y);
+        cout << PlayerData->Shape << endl;
+    }
 
     delete PlayerData;
     PlayerData = nullptr;
 
+    //LAN Card
 }
