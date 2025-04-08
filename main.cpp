@@ -28,16 +28,27 @@ void Swap2(int* PA, int* PB)
 	PB = Temp;
 }
 
-
+void Test(int* A, int Size)
+{
+	for (int i = 0; i < Size; ++i)
+	{
+		//cout << *(A+i) << endl;
+		cout << A[i] << endl;
+	}
+}
 
 int main()
 {
-	int A = 10;
-	int B = 20;
-	Swap(&A, &B);
+	int A[20] = { 0, };
+	for (int i = 0; i < 20; ++i)
+	{
+		A[i] = i;
+	}
+	Test(A, 20);
 
-	cout << A << endl;
-	cout << B << endl;
+	//cout << A[2] << endl;
+	//cout << *(A + 2 ) << endl;
+
 
 	return 0;
 }
