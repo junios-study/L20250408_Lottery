@@ -28,23 +28,54 @@ void Swap2(int* PA, int* PB)
 	PB = Temp;
 }
 
+
 void Test(int* A, int Size)
 {
 	for (int i = 0; i < Size; ++i)
 	{
-		//cout << *(A+i) << endl;
+		cout << *(A+i) << endl;
 		cout << A[i] << endl;
 	}
 }
 
+int* LoadTexture(int Value)
+{
+	return new int[Value];
+}
+
 int main()
 {
-	int A[20] = { 0, };
-	for (int i = 0; i < 20; ++i)
+	
+	for (int i = 0; i < 1000; ++i)
 	{
-		A[i] = i;
+		delete[] LoadTexture(100000000);
 	}
-	Test(A, 20);
+
+	int Size = 10;
+
+	//Heap 지워지지 내맘대로 할수 있다.
+	//생성, 삭제 조정 할수 있다.
+	int* PA = new int[Size];
+	int* PA2 = PA;
+	for (int i = 0; i < Size; ++i)
+	{
+		PA2[i] = i;
+	}
+	//*(PA+0) 
+	delete[] PA2;
+	PA2 = nullptr;
+	  
+
+	//dangling pointer
+	//if (PA == nullptr)
+	if (PA)
+	{
+		cout << PA[1] << endl;
+	}
+
+	int* PB = new int;
+	delete PB;
+
 
 	//cout << A[2] << endl;
 	//cout << *(A + 2 ) << endl;
