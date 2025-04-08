@@ -13,22 +13,41 @@ void B()
 	memset(Pockets, 0, sizeof(Pockets));
 }
 
+
+void Swap(int* A, int* B)
+{
+	int Temp = *A;
+	*A = *B;
+	*B = Temp;
+}
+
+
+
 int main()
 {
-	int Pockets[45] = { 0, };
-	//정수형 포인터
-	int* P = Pockets;
+	int A = 10;
+	int B = 20;
+	
+	Swap(&A, &B);
 
-	Initialize();
-	B();
-	Shuffle();
-	Print();
+	cout << A << endl;
+	cout << B << endl;
 
 	return 0;
 }
 
+
+
+
+
+
+
+
+
 void Initialize()
 {
+	srand(time(NULL));
+
 	for (int i = 0; i < 45; ++i)
 	{
 		Pockets[i] = i + 1;
@@ -56,6 +75,6 @@ void Print()
 {
 	for (int i = 0; i < 6; ++i)
 	{
-		cout << Pockets[0] << endl;
+		cout << Pockets[i] << endl;
 	}
 }
